@@ -1,0 +1,29 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+.heading{
+    color: blue;
+}
+.p-tag{
+    font-size: 3rem;
+}
+.ul{
+    display: flex;
+}
+.ul li{
+    padding: 10px;
+    list-style-type: none;
+}
+
+html, body { height: 100%; }
+body { margin: 0; 
+    padding-left: 10px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.footer{
+    background-color: #200606;
+}
+.footer p {
+    color: #34e51b;
+    font-size: 1.2rem;
+}

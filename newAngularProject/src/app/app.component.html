@@ -1,0 +1,169 @@
+<router-outlet></router-outlet>
+<h1 class="heading">This is {{title}}</h1>
+
+
+<input type="text" placeholder="Enter Name" #box (keyup) ="getData(box.value)">
+<button (click) = "getData(box.placeholder)"> Click here to display input value</button>
+<p>Input Value is: {{displayVal}}</p>
+
+<!-- making a counter button -->
+<button (click) = "counter('minu s')"> --</button>
+<p>Count is : {{count}}</p>
+<button  (click) = "counter('add')">++</button> <br> <br>
+<!-- <app-login> </app-login> -->
+<a routerLink = "login"> Login here</a> <br> <br>
+<!-- <app-header></app-header> -->
+<a routerLink = ""> Check header here</a>
+<!-- <app-to-do-list></app-to-do-list> -->
+<app-child [item] = "data"></app-child>
+<button (click) = updateData()>update Child component</button> <br> <br>
+
+
+<!-- <app-user-details></app-user-details> -->
+<a routerLink = "user-details">See user Details</a> <br> <br>
+
+<!-- <ul *ngFor = "let user of userDetails">
+     <app-user-details [item] = "user"></app-user-details>
+</ul> -->
+
+<!-- Two way binding -->
+<h1>{{newTitle}}</h1> <br>
+<input type="text"  [(ngModel)] = "value"> <br>
+<h3>{{value}}</h3>
+
+<!-- template Reference Variable -->
+<input type="text" #input placeholder="enter name">
+<button (click) ="getVal(input)">Click Me</button>
+
+<!-- getting the propeties or attribute of any input box, in the .ts file, the parameter would be of type HTMLInputElement -->
+
+
+<!-- Pipes -->
+<h1>{{newTitle | uppercase}}</h1> <br>
+<h1>{{newTitle | lowercase}}</h1> <br>
+<h1>{{newTitle}}</h1> <br>
+
+<h1>{{today}}</h1> <br>
+<h1>{{today | date}}</h1> <br>
+
+<h1>{{today | date: 'fullDate'}}</h1> <br>
+
+<!-- Alternative for pipe: this take longer process -->
+<h3> {{capString(newTitle)}}</h3>
+
+<!-- Advanced  pipes -->
+<!-- using splice method to get part of the string. when using Parameters, use a colon then the parameter value -->
+<h1> {{newTitle | slice: 3 :10}} </h1>
+
+<!-- the json pipe: Used to display items of n object -->
+<h1>{{user | json}}</h1>
+<!--  it can also be changed to uppercase -->
+<h1>{{user | json |uppercase}}</h1>
+<!-- number pipe -->
+<!-- <h1>{{003.3400 | number: '1:2-3'}}</h1> NOT VALID -->
+<!-- currency pipe -->
+<h1>{{100 | currency: "USD" }}</h1>
+<h1>{{100 | currency: "GBP" }}</h1>
+
+<!-- search for how to make a string title case -->
+<!-- <h1>{{hello how are you? |  }}</h1> -->
+
+
+<!-- Using Angular material -->
+
+<h1>{{30 | usdInr:72}}</h1>
+<!-- <h1>{{30 | usdInr:72:2}}</h1> -->
+
+
+
+<h1>{{formTitle}}</h1>
+<h1> Template Driven forms</h1>
+<form #loginForm = "ngForm" (ngSubmit) = "loginUser(loginForm.value)">
+     <input type="text" required #name = "ngModel" name="name" pattern ="[a-zA-Z]+$" placeholder="Enter Name" ngModel>
+     <br> <br>
+     <span *ngIf = "name.invalid && name.touched" style="color: red;">  Please Enter a valid Name</span> <br> <br>
+
+     <input type="email" required #email = "ngModel" name="email" email placeholder="Enter email" ngModel>
+     <br> <br>
+     <span *ngIf = "email.invalid && email.touched" style="color: red;">  Please Enter a valid email</span> <br> <br>
+     
+     <input type="password" name="password"  required #password = "ngModel" minlength="2" placeholder="Enter Password" ngModel>
+      <br> <br> <br>
+
+      <span *ngIf = "password.invalid && password.touched" style="color: red;"> Enter a valid Password</span> <br> <br>
+
+     <button [disabled] = "loginForm.invalid">Login</button>
+</form>
+
+<button [disabled] = "loginForm.invalid" (click) = "loginUser(loginForm.value)" >Test Login</button> <br> <br> <br> <br>
+
+<!-- template driven form validations -->
+
+
+<!-- REACTIVE FORMS -->
+<h1> Reactive forms</h1>
+<form [formGroup] = "newLoginForm" (ngSubmit) = "loginReactive()">
+     <input type="text" placeholder="enter name" formControlName = "user">
+     <br> 
+     <span *ngIf = "users && users.invalid && users.touched">Input a valid username</span>
+     <br> 
+     <input type="password" placeholder="enter password" formControlName = "password">
+     <br> 
+     <span *ngIf = "password && password.invalid && password.touched">Input a valid password</span>
+     <br>
+
+     <button [disabled] = "newLoginForm.invalid"> Login</button>
+
+</form> <br> <br> <br>
+
+
+
+<!-- directives -->
+<h1 appRedEl>{{title}}</h1>
+<p appRedEl class="bg-primary">Anil</p>
+
+<!-- creating a link with other information,for example, creating  informations for a lot of users -->
+<a routerLink="user-details/10"> click here</a> <br> <br>
+
+<!-- <input matInput [matDatepicker]="picker">
+<mat-hint>MM/DD/YYYY</mat-hint>
+<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker> <br> <br> <br> <br> -->
+
+
+<mat-slider min="1" max="100" step="1" value="50"></mat-slider> <br>
+<app-nopage></app-nopage>
+
+
+<!-- services -->
+<ul>
+     <li *ngFor= "let item of memberData">
+          {{item.name}} {{item.email}}
+     </li>
+</ul>
+
+<app-footer></app-footer>
+
+<ul>
+     <li *ngFor = "let user of userss">
+          {{user.name}} --- {{user.age}}
+     </li>
+</ul>
+
+
+<form  #UsersForm = "ngForm" (ngSubmit) = "getUserFormData(UsersForm.value)" >
+     <input type="text" ngModel name="name" placeholder="enter Name"> <br> <br>
+
+     <input type="text" ngModel name="email" placeholder="enter email"> <br> <br>
+
+     <input type="password" ngModel name="password" placeholder="enter password"> <br> <br>
+
+     <button>Add New User</button>
+     
+</form>
+
+
+<app-get-data-from-api></app-get-data-from-api>
+<!-- Basic routing -->
+<!-- dynamic routing -->
+

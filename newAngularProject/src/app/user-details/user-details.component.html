@@ -1,0 +1,15 @@
+<p>user-details works!</p>
+<li>{{item.name}}</li>
+<li>{{item.email}}</li> <br> <br>
+
+<ul *ngFor = "let user of userDetails">
+    <app-user-details [item] = "user"></app-user-details>
+</ul>
+
+<!-- <ul>
+    <li *ngFor = "let user of userss">
+        {{user.email}} --- {{user.name}}
+    </li>
+</ul>  NOT WORKING--> 
+
+<p> this is {{userId}}</p>

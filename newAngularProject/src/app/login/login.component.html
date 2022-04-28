@@ -1,0 +1,103 @@
+<app-header></app-header>
+<h2 class="heading">login works!</h2>
+
+<h1 *ngIf = "show else elseBlock"> Welcome</h1>
+<!-- if show is true, dsiplay welcome ,else display Access Denied.
+
+ng-template can also be used on if conditions too not only else-->
+
+<ng-template #elseBlock>
+    <h1>Access Denied</h1>
+</ng-template>
+
+<!-- using ng-template for both if and else -->
+<h1 *ngIf = "show; then ifBlock else elseTemplate"></h1>
+
+<ng-template #ifBlock>
+    <h1>If condition</h1>
+</ng-template>
+
+<ng-template #elseTemplate>
+    <h1>Else condition</h1>
+</ng-template>
+
+<!-- in case of having show = yes, in the .ts file, for example. type:
+<h1 *ngIf = "show === "yes"; then ifBlock else elseTemplate"></h1> -->
+
+
+<ng-template [ngIf] = "color === 'red'">
+    <h1> Red Color</h1>
+</ng-template>
+
+<!-- to use else if cnditions, just create another ngIf to check for another condition, cos angular doesn't have any else if condition -->
+<ng-template [ngIf] = "color === 'green'">
+    <h1 style="color: 'green'"> green Color</h1>
+</ng-template>
+<ng-template [ngIf] = "color === 'blue'">
+    <h1 style="color: 'blue'"> Blue Color</h1>
+</ng-template>
+<ng-template [ngIf] = "color === 'hotpink'">
+    <h1 style= "color: 'hotpink'"> Pink Color</h1>
+</ng-template>
+
+<!-- Switch case use ngSwitch sunig the camle case -->
+<div [ngSwitch] = "newColor">
+    <h1 *ngSwitchCase = "'red'"  style="color: red;"> Red</h1>
+    <h1 *ngSwitchCase = "'green'"  style="color: green;"> green</h1>
+    <h1 *ngSwitchCase = "'black'"  style="color: black;"> black</h1>
+    <h1 *ngSwitchCase = "'coral'"  style="color: coral;"> coral</h1>
+    <h1 *ngSwitchCase = "'pink'"  style="color: hotpink;"> pink</h1>
+    <!-- for a default value: it will display if a value meets no condition in the switch case  -->
+    <h1 *ngSwitchDefault> Unknown Color</h1>
+</div>
+
+
+<h3 *ngFor = "let item of users" [style.color] = "color"> Name is {{item}} </h3>
+
+<!-- ngFor is used here -->
+<h3 *ngFor = "let item of userDetails" [style.backgroundColor] = "bgColor"> Datails is {{item.name}}--- {{item.email}} -- {{item.phone}} </h3>
+<!-- nested loop -->
+<h6> All New users</h6>
+<ul *ngFor = "let user of newUsers" class="ul">
+    <li>{{user.name}}</li>
+    <li>{{user.email}}</li>
+    <li>{{user.phone}}</li>
+
+    <!-- <ul *ngFor= "let account of newUsers.accounts">
+        <li>{{account}}</li>
+    </ul>  Nested for loop not working for ul, saying for of is not used on ul--> 
+</ul>
+
+<!-- style binding -->
+<h1 [style.color] ="color" [style.backgroundColor] = "bgColor">Style binding</h1>
+
+<p [style.backgroundColor] = "bgColor" class="p-tag">{{title}}</p>
+
+
+<button (click) ="UpdateColor()"> Update Color</button>
+ <br> <br> <br> <br> <br>
+<!-- create a form -->
+<h1> Basic Form</h1>
+<form #basicForm = "ngForm" (submit) = "getData(basicForm.value)">
+    <input type="text" ngModel name="user" placeholder="Enter user name">
+    <br> <br>
+
+    <input type="text" ngModel name="email" placeholder="Enter user email">
+    <br> <br>
+    <input type="text" ngModel name="password" placeholder="Enter user password"> <br> <br>
+
+    <button> register</button>
+
+</form>
+
+<ul>
+    <li>{{userData.user}} {{userData.email}}, {{userData.password}}</li>
+</ul>
+
+
+<!-- for children components -->
+<a routerLink="me">About Me</a> <br> <br>
+<a routerLink="company"> About Company</a>
+<router-outlet></router-outlet>
+
+<!-- angular text box and button -->
