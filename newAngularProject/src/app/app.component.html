@@ -7,14 +7,16 @@
 <p>Input Value is: {{displayVal}}</p>
 
 <!-- making a counter button -->
-<button (click) = "counter('minu s')"> --</button>
+<h1>Making a Counter button</h1>
+<button (click) = "counter('minus')"> --</button>
 <p>Count is : {{count}}</p>
 <button  (click) = "counter('add')">++</button> <br> <br>
 <!-- <app-login> </app-login> -->
 <a routerLink = "login"> Login here</a> <br> <br>
 <!-- <app-header></app-header> -->
-<a routerLink = ""> Check header here</a>
-<!-- <app-to-do-list></app-to-do-list> -->
+<a routerLink = ""> Check header here</a> <br> <br>
+<h1>TO DO LIST: ADD NEW TASK</h1>
+<app-to-do-list></app-to-do-list>
 <app-child [item] = "data"></app-child>
 <button (click) = updateData()>update Child component</button> <br> <br>
 
@@ -39,6 +41,7 @@
 
 
 <!-- Pipes -->
+<h1>PIPES</h1>
 <h1>{{newTitle | uppercase}}</h1> <br>
 <h1>{{newTitle | lowercase}}</h1> <br>
 <h1>{{newTitle}}</h1> <br>
@@ -77,7 +80,8 @@
 
 
 <h1>{{formTitle}}</h1>
-<h1> Template Driven forms</h1>
+<h1> Template Driven Forms</h1>
+<p> View Login Information on Session Storage</p>
 <form #loginForm = "ngForm" (ngSubmit) = "loginUser(loginForm.value)">
      <input type="text" required #name = "ngModel" name="name" pattern ="[a-zA-Z]+$" placeholder="Enter Name" ngModel>
      <br> <br>
@@ -95,17 +99,19 @@
      <button [disabled] = "loginForm.invalid">Login</button>
 </form>
 
+<h3> Button outside the form still submits the login info.</h3>
+
 <button [disabled] = "loginForm.invalid" (click) = "loginUser(loginForm.value)" >Test Login</button> <br> <br> <br> <br>
 
 <!-- template driven form validations -->
 
 
 <!-- REACTIVE FORMS -->
-<h1> Reactive forms</h1>
+<h1> Reactive forms validation</h1>
 <form [formGroup] = "newLoginForm" (ngSubmit) = "loginReactive()">
-     <input type="text" placeholder="enter name" formControlName = "user">
+     <input type="text" placeholder="enter Email" formControlName = "user">
      <br> 
-     <span *ngIf = "users && users.invalid && users.touched">Input a valid username</span>
+     <span *ngIf = "users && users.invalid && users.touched">Input a valid email</span>
      <br> 
      <input type="password" placeholder="enter password" formControlName = "password">
      <br> 
@@ -119,10 +125,12 @@
 
 
 <!-- directives -->
+<h1> Using Directives</h1>
 <h1 appRedEl>{{title}}</h1>
 <p appRedEl class="bg-primary">Anil</p>
 
 <!-- creating a link with other information,for example, creating  informations for a lot of users -->
+<h1>creating urls with other information,for example, creating  informations for a lot of users including each user's Id </h1>
 <a routerLink="user-details/10"> click here</a> <br> <br>
 
 <!-- <input matInput [matDatepicker]="picker">
@@ -131,17 +139,22 @@
 <mat-datepicker #picker></mat-datepicker> <br> <br> <br> <br> -->
 
 
+<h1> Using Mat slider; Angular Material</h1>
 <mat-slider min="1" max="100" step="1" value="50"></mat-slider> <br>
+
+
 <app-nopage></app-nopage>
 
 
 <!-- services -->
+<h1>using Services</h1>
 <ul>
      <li *ngFor= "let item of memberData">
           {{item.name}} {{item.email}}
      </li>
 </ul>
 
+<h1>Using a Service inside the footer</h1>
 <app-footer></app-footer>
 
 <ul>
@@ -162,7 +175,7 @@
      
 </form>
 
-
+<h2> Getting data from API</h2>
 <app-get-data-from-api></app-get-data-from-api>
 <!-- Basic routing -->
 <!-- dynamic routing -->
